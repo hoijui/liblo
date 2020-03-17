@@ -42,10 +42,11 @@ int main(int argc, char *argv[])
     } else {
         /* send a message to /foo/bar with two float arguments, report any
          * errors */
-        if (lo_send(t, "/foo/bar", "ff", 0.12345678f, 23.0f) == -1) {
+        if (lo_send(t, "/foo/bar", "ffctttt", 0.12345678f, 23.0f, 'x', LO_TT_IMMEDIATE, (lo_timetag){0U,0U}, (lo_timetag){3600U,0U}, (lo_timetag){3153600000U,0U}) == -1) {
             printf("OSC error %d: %s\n", lo_address_errno(t),
                    lo_address_errstr(t));
         }
+	return 1;
 
         /* send a message to /a/b/c/d with a mixtrure of float and string
          * arguments */
